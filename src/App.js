@@ -1,24 +1,39 @@
-import logo from './logo.svg';
+import React,{useState} from 'react';
+import { Switch, Route } from 'react-router-dom';
+
 import './App.css';
+import {Routes} from './routes/routes'
+import LoginPage from './components/Login/LoginPage';
+
+
 
 function App() {
+    const [user,setUser] = useState({
+        email:"",
+        password:""
+    })
+    const [success, setSuccess] = useState(false)
+
+    const logIn = () => {
+      setSuccess(true)
+    }
+
+    const logOut = () => {
+      console.log('details')
+    }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+        <Switch>
+          {(!success?
+            <Route exact path="/" >
+              <LoginPage logIn={logIn} />
+            </Route>
+            :  <Routes/> 
+          )}
+        </Switch>
+    </>
+    
   );
 }
 
