@@ -94,6 +94,7 @@ const EmailStyle = styled.div`
     }
 
     input{
+        padding-left: 10px;
         border:none;
         background: #FFFFFF;
         border: 1px solid #0A74DC;
