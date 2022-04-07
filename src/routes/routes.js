@@ -18,7 +18,6 @@ export const Routes = () => {
             <Main>
                 <Header/>
                 <Switch>
-                    {/* <Route><CenterView /></Route> */}
                     <Route exact path="/centerview"  component={CenterView}/>
                     <Route exact path="/starship"  component={StarShip}/>
                     <Route exact path="/people" component={People}/>

@@ -10,25 +10,25 @@ const LoginPage = ({logIn}) => {
         email:"",
         password:""
     })
+    const [isLoading,setIsLoading] = useState(false)
 
-    const [errors, setErrors] = useState()
-    const [correctInfo, setCorrectInfo] = useState(false)
 
     const handleChange = (e) => {
         setValues({...values,[e.target.name]:[e.target.value]});
     }
 
-    const handleSubmit = (e) =>
-    {
+    const handleSubmit = (e) => {
+        setIsLoading(true)
         e.preventDefault()
-        setCorrectInfo(true)
-        logIn(true)
+        setTimeout(() => {
+          setIsLoading(false)
+          window.location.replace("/centerview")
+        }, 1000);
+       
     }
-    useEffect(()=>{
-        if (correctInfo){
-            logIn(true)
-        }
-    },[])
+
+    const disableBtn = values?.email === "" || values?.password === ""
+
     return (
         
         <MainDiv>
@@ -49,7 +49,7 @@ const LoginPage = ({logIn}) => {
                         <label>Password</label>
                         <input type="password" name='password' pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder='**********' required onChange={handleChange} value= {values.password} />
                     </EmailStyle>
-                    <button onSubmit={handleSubmit}>Log in</button>
+                    <button disabled={disableBtn} onSubmit={handleSubmit}>Log in</button>
                     <p>Forget your password?</p>
                 </LoginInput>
                 <LoginPolicy>

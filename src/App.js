@@ -8,16 +8,7 @@ import LoginPage from './components/Login/LoginPage';
 
 
 function App() {
-    const [user,setUser] = useState({
-        email:"",
-        password:""
-    })
-    const [success, setSuccess] = useState(false)
-
-    const logIn = () => {
-      setSuccess(true)
-    }
-
+   
     const logOut = () => {
       console.log('details')
     }
@@ -25,12 +16,12 @@ function App() {
   return (
     <>
         <Switch>
-          {(!success?
+         
             <Route exact path="/" >
-              <LoginPage logIn={logIn} />
+              <LoginPage />
             </Route>
             :  <Routes/> 
-          )}
+          
         </Switch>
     </>
     
