@@ -1,35 +1,24 @@
-import React,{useEffect,useState} from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { useParams, Link } from 'react-router-dom'
-import axios from 'axios'
+import { useLocation } from 'react-router-dom'
 import moment from 'moment'
+
 import Cover from '../cover.png'
 
 
 function OverviewPage() {
-    const [film, setFirm] = useState([])
-    const { id } = useParams()
+    const location = useLocation()
+    const data = location.state;
 
-    useEffect(() => {
-        const fetchFilm = async ()  => {
-    try {
-        const res = await axios.get("https://swapi.dev/api/films");
-        setFirm(res?.data?.results) 
-    } catch (error) {
-        throw error
-    }
-        } 
-        fetchFilm()
-    },[id])
     
     return (
         <OverviewDiv>
             <OverviewImg src={Cover} alt="" />
             <OverviewCont>
-                <h1>Cover</h1>
-                <p>Director: <span>{film.director}</span></p>
-                <p>Producer: <span>{film.producer}</span></p>
-                <DateInfo>Release Date: <span>{moment(film.release_date).format("ll")}</span></DateInfo>
+                <h1>{data?.title}</h1>
+                <p>Director: <span>{data?.director}</span></p>
+                <p>Producer: <span>{data?.producer}</span></p>
+                <DateInfo>Release Date: <span>{moment(data?.release_date).format("ll")}</span></DateInfo>
             </OverviewCont>
         </OverviewDiv>
     )
@@ -38,6 +27,7 @@ function OverviewPage() {
 const OverviewDiv = styled.div`
     display:flex;
     margin: 44px 28px;
+    gap: 24px;
 `
 const OverviewImg = styled('img')`
     width: 318px;
@@ -48,22 +38,22 @@ const OverviewCont = styled.div`
     height: 24px;
     font-family: 'Inter';
     font-style: normal;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
 
     h1{
-        width: 169px;
         font-weight: 700;
         font-size: 48px;
         margin-bottom: 28px;
     }
     p{
-        margin-left: -10px;
         font-weight: 500;
         font-size: 16px;
         margin-top:5px;
     }
 `
 const DateInfo = styled.h6`
-    margin-left: 28px;
     font-weight: 500;
     font-size: 16px;
     margin-top:5px;

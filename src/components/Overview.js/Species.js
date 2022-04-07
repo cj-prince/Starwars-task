@@ -2,6 +2,7 @@ import React,{useEffect,useState} from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
 import moment from 'moment'
+import {useHistory} from 'react-router-dom'
 
 import {CustomTable,TableWrapper} from '../tables/CustomTable'
 import { speciesTableColumns } from '../tables/Columns'
@@ -9,6 +10,7 @@ import { speciesTableColumns } from '../tables/Columns'
 
 
 const Species = () => {
+    const history = useHistory()
      const [species, setSpecies] = useState([])
       const [isLoading,setIsLoading] = useState(false)
 
@@ -29,17 +31,19 @@ const Species = () => {
         fetchSpecies()
     },[])
 
-    const tableData = species?.map(({name,classification,eye_colors,hair_colors,average_height,created}) => {
-        return {
-            col1:<div><input type="checkbox" /></div>,
-            col2: name,
-            col3: classification,
-            col4: `${eye_colors.substr(0,5)}`,
-            col5: `${hair_colors.substr(0,5)}`,
-            col6: average_height,
-            col7: moment(created).format("L"),
-        }
-    })
+    const goToSinglePage = (data) => {
+     history.push({pathname:`/species/${data?.episode_id}`,state:data})
+    }
+
+    const tableData = species?.map((s) => ({
+            col1:<div onClick={() => goToSinglePage(s)}><input type="checkbox" /></div>,
+            col2: s?.name,
+            col3: s?.classification,
+            col4: `${s?.eye_colors.substr(0,5)}`,
+            col5: `${s?.hair_colors.substr(0,5)}`,
+            col6: s?.average_height,
+            col7: moment(s?.created).format("L"),
+    }))
   return (
         <SpeciesDiv>
             <h6>Species</h6>

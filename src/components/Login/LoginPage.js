@@ -1,11 +1,13 @@
-import React, {useState, useEffect} from 'react'
-import styled from 'styled-components'
+import React, {useState} from 'react'
+import styled from 'styled-components';
+import {useHistory} from 'react-router-dom'
 
 import StarwarsImg from '../image 1.png'
-import Validation from './Validation'
 
 
-const LoginPage = ({logIn}) => {
+const LoginPage = () => {
+    const location = useHistory()
+
     const [values,setValues] = useState({
         email:"",
         password:""
@@ -22,7 +24,7 @@ const LoginPage = ({logIn}) => {
         e.preventDefault()
         setTimeout(() => {
           setIsLoading(false)
-          window.location.replace("/centerview")
+          location.push("/centerview")
         }, 1000);
        
     }

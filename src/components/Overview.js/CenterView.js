@@ -2,6 +2,7 @@ import React,{useEffect,useState} from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
 import moment from 'moment'
+import {useHistory} from 'react-router-dom'
 
 import CenterTop from './CenterTop'
 import {CustomTable,TableWrapper} from '../tables/CustomTable'
@@ -9,9 +10,9 @@ import { firmTableColumns } from '../tables/Columns'
 
 
 const CenterView = () => {
+      const history = useHistory()
       const [film, setFirm] = useState([])
       const [isLoading,setIsLoading] = useState(false)
-      const [singleView, setSingleView] = useState()
 
       useEffect(() => {
         const fetchFilm = async ()  => {
@@ -29,18 +30,22 @@ const CenterView = () => {
 
         fetchFilm()
     },[])
-  
-    const tableData = film?.map(({title,release_date,director,producer,episode_id,characters}) => {
-      return {
-      col1:<div><input type="checkbox" /></div>,
-      col2: title,
-      col3: moment(release_date).format("L"),
-      col4: director,
-      col5: `${producer.substr(0,10)}...`,
-      col6: episode_id,
-      col7: characters[0],
+
+    const goToSinglePage = (data) => {
+     history.push({pathname:`/centerview/${data?.episode_id}`,state:data})
     }
-    })
+  
+    const tableData = film?.map((f) => ({
+      col1:<div onClick={() => goToSinglePage(f)}><input type="checkbox" /></div>,
+      col2: f?.title,
+      col3: moment(f?.release_date).format("L"),
+      col4: f?.director,
+      col5: `${f?.producer.substr(0,10)}...`,
+      col6: f?.episode_id,
+      col7: f?.characters[0],
+    })) 
+   
+ 
 
 
   return (

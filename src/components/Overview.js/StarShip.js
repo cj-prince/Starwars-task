@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
+import {useHistory} from 'react-router-dom'
 
 import {CustomTable,TableWrapper} from '../tables/CustomTable'
 import { starshipTableColumns } from '../tables/Columns'
@@ -8,7 +9,8 @@ import { starshipTableColumns } from '../tables/Columns'
 
 
 const StarShip = () => {
-  const [starShip, setStarShip] = useState([])
+    const history = useHistory()
+    const [starShip, setStarShip] = useState([])
         const [isLoading,setIsLoading] = useState(false)
 
         useEffect(() => {
@@ -26,18 +28,21 @@ const StarShip = () => {
 
         fetchStarShip()
     },[])
+    const goToSinglePage = (data,idx) => {
+     history.push({pathname:`/starship/${idx+1}`,state:data})
+    }
 
-    const tableData = starShip?.map(({name,model,starship_class,passengers,length,films}) => {
-        return {
-            col1:<div><input type="checkbox" /></div>,
-            col2: name,
-            col3: model,
-            col4: starship_class,
-            col5: passengers,
-            col6: length,
-            col7: films[0],
-        }
-    })
+    const tableData = starShip?.map((s,i) => ({
+            col1:<div onClick={() => goToSinglePage(s,i)}><input type="checkbox" /></div>,
+            col2: s?.name,
+            col3: s?.model,
+            col4: s?.starship_class,
+            col5: s?.passengers,
+            col6: s?.length,
+            col7: s?.films[0],
+        
+    }))
+
   return (
     <StarDiv>
       <h6>Starship</h6>
