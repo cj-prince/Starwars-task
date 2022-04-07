@@ -15,6 +15,7 @@ const SpeciesPage = () => {
                 <h1>{data?.name}</h1>
                 <p>Designation: {data?.designation}</p>
                 <p>Language: {data?.language}</p>
+                <p>Eye Color: {data?.eye_colors}</p>
                 <DateInfo>Average Lifespan: {data?.average_lifespan}</DateInfo>
             </OverviewCont>
         </OverviewDiv>

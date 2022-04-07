@@ -39,7 +39,6 @@ const OverviewCont = styled.div`
     font-style: normal;
 
     h1{
-        width: 169px;
         font-weight: 700;
         font-size: 48px;
         margin-bottom: 28px;
