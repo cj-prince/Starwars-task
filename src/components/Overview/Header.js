@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+
 import NoticeIcon from '../Shape.png'
 import AccountIcon from '../account.png'
 
@@ -7,6 +9,8 @@ import AccountIcon from '../account.png'
 const Header = () => {
   return (
     <HeaderDiv>
+        {/* <Link to='/'><p>Back</p></Link> */}
+        
         <HeaderImg src={NoticeIcon} alt="" />
         <HeaderDivider></HeaderDivider>
         <AccountImg src={AccountIcon} alt="" />

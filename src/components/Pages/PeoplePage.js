@@ -33,7 +33,7 @@ const OverviewCont = styled.div`
     display: flex;
     flex-direction: column;
     align-items: baseline;
-    height: 24px;
+    /* height: 24px; */
     font-family: 'Inter';
     font-style: normal;
 

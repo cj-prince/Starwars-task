@@ -49,7 +49,7 @@ const LoginPage = () => {
                     </EmailStyle>
                     <EmailStyle>
                         <label>Password</label>
-                        <input type="password" name='password' pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder='**********' required onChange={handleChange} value= {values.password} />
+                        <input type="password" name='password' pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder='Password' required onChange={handleChange} value= {values.password} />
                     </EmailStyle>
                     <button disabled={disableBtn} onSubmit={handleSubmit}>Log in</button>
                     <p>Forget your password?</p>
@@ -94,7 +94,7 @@ const EmailStyle = styled.div`
     }
 
     input{
-        padding-left: 10px;
+        padding-left: 15px;
         border:none;
         background: #FFFFFF;
         border: 1px solid #0A74DC;
@@ -122,7 +122,7 @@ const LoginInput = styled.form`
     font-style: normal;
 
     button {
-        width: 335px;
+        width: 353px;
         height: 48px;
         background: #0A74DC;
         border-radius: 6px; 
@@ -134,13 +134,12 @@ const LoginInput = styled.form`
     }
     p{
         color:  #0A74DC ;
-        width: 152px;
-        height: 16px;
         font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
         line-height: 16px;
+        margin:-10px 0px 50px 0px;
         cursor: pointer;
     }
 `
@@ -148,7 +147,7 @@ const LoginText = styled.div`
     display:flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-left:66px ;
+    margin-left:50px ;
     margin-bottom: 60px ;
     font-family: 'Inter';
     font-style: normal;

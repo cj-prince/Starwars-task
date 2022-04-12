@@ -68,7 +68,7 @@ const TableWrapper = styled.div`
   th {
     
     text-align: left;
-    padding: 0 1rem;
+    padding: 0 2.3rem;
     white-space: nowrap;
   }
 

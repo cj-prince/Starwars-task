@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
+import { NavLink} from 'react-router-dom'
+
 
 import StarImg from '../image 1.png'
 import Group from '../Images/Group 31831.png'
@@ -12,6 +13,7 @@ import SpeciesBox from '../Images/RectangleSl.png'
 
 
 const SideView = () => {
+  
   const sidebarData = [
      {
       icon: StarshipBox,
@@ -29,20 +31,26 @@ const SideView = () => {
       path: "/species"
     }
   ]
+
+    
+
   return (
     <SideDiv>
         <SideImg src={StarImg} alt="" />  
-        <NavLink to='/centerview'>
-          <Overview><img src={Group} alt="" /> Overview</Overview>
-        </NavLink>
-
+       
+          <Overview >
+             <NavLink to='/centerview' > 
+              <img src={Group} alt="group" /> 
+              <p>Overview</p> 
+              </NavLink>
+          </Overview> 
+        
+        
         <SideList>
           {sidebarData?.map((data,i) => (
-          <NavLink key={i} to={data?.path}>
-          <SidebarItem>
-              <img src={data?.icon} />
+          <NavLink  key={i} to={data?.path} >
+              <img src={data?.icon} alt="icon" />
               <p>{data?.name}</p>
-          </SidebarItem>
           </NavLink>
             ))}
         
@@ -51,12 +59,22 @@ const SideView = () => {
   )
 }
 
-const SideDiv = styled.div `
+const SideDiv = styled.nav `
     width: 272px;
     height: 1003px;
     background: #031434;
     font-family: 'Inter';
     font-style: normal;
+    a{
+      text-decoration:none;
+      display:flex ;
+    }
+    a.active{
+      background-color: #0A74DC !important;
+      /* padding-left:45px; */
+      margin: auto;
+      border-radius: 4px;
+    }
 `
 const SideImg = styled("img")`
         margin-top: 32px;
@@ -64,54 +82,38 @@ const SideImg = styled("img")`
         width: 107px;
         height: 46px; 
 `
-const Overview = styled.p`
-        display:flex ;
-        justify-content:flex-start;
-        align-items:center;
-        margin-left:23px;
-        padding:0 55px;
-        height: 48px;
-        background: #0A74DC;
-        border-radius: 4px;
-        width: 85px;
-        font-weight: 600;
-        font-size: 16px;
-        color: #FFFFFF;
+const Overview = styled.nav`
         cursor: pointer;
+        margin:15px 35px ;
+        p{
+            font-weight: 600;
+            font-size: 16px;
+            color: #FFFFFF;
+        }
         img{
-          margin: 0 10px 0 -30px;
           width: 24px;
           height: 24px;
-          
+          margin: 13px 15px 0 16px
         }
 `
-const SideList = styled.div`
-    height: 24px;
+const SideList = styled.nav`
     font-weight: 600;
     font-size: 16px; 
     color: #FFFFFF;  
-    margin-top: 33px;
+    margin: 33px 40px 0;
     cursor: pointer;
-        img{
-        width: 17px;
+      img{
         height: 16px;
-        margin: 0 15px 0 50px
+        margin: 17px 15px 0 16px
       }
     p{
-        display:flex ;
-        justify-content:flex-start;
+        
     }
     a {
       text-decoration:none ;
       color:#FFFFFF ;
     }
-`
-
-const SidebarItem = styled.div`
-display:flex ;
-align-items: center ;
-
-
+  
 `
 
 export default SideView
