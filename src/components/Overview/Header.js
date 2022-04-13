@@ -1,15 +1,38 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { useHistory, useLocation} from 'react-router-dom'
 
 import NoticeIcon from '../Shape.png'
 import AccountIcon from '../account.png'
+import BackImage from '../Images/chevron_right.png'
 
 
 const Header = () => {
+    const history = useHistory();
+    const location = useLocation()
+
+    const excludePath = (path) => {
+        switch (true) {
+            case path === "/people":
+                return false;
+                 case path === "/starship":
+                return false;  
+                  case path === "/centerview":
+                return false;
+                  case path ===  "/species":
+                return false;         
+            default:
+                return true;
+        }
+    }
   return (
     <HeaderDiv>
-        {/* <Link to='/'><p>Back</p></Link> */}
+        {excludePath(location?.pathname) &&
+            <Button>
+                <img src={BackImage} alt="" />
+                <button onClick={history.goBack}>Back</button>
+            </Button> 
+        }   
         
         <HeaderImg src={NoticeIcon} alt="" />
         <HeaderDivider></HeaderDivider>
@@ -30,6 +53,25 @@ const HeaderDiv = styled.div`
     background: #FFFFFF;
     box-shadow: 0px 2px 6px rgba(229, 229, 229, 0.3);
 
+`
+const Button = styled.div`
+    display:flex;
+    margin-right: 780px;
+    cursor: pointer;
+    img{
+        margin-top: 3px;
+        height: 13px ;
+    }
+    button{
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        border: none;
+        background: transparent;
+        color: #A4A7B7;
+        cursor: pointer;
+    } 
 `
 const HeaderImg = styled('img')`
     width: 16px;
